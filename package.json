@@ -1,0 +1,37 @@
+{
+  "name": "fitness-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cross-env NODE_OPTIONS=--max-old-space-size=1024 npm run build --workspace=client",
+    "build:server": "npx rimraf dist && cross-env NODE_OPTIONS=--max-old-space-size=1024 npx tsc -p server",
+    "start": "node dist/index.js",
+    "install:all": "npm install --no-audit --no-fund --loglevel error"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "next": "15.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "overrides": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  }
+}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
-import { Users, Activity, DollarSign, TrendingUp, Dumbbell, LayoutDashboard, Plus, Pencil, Trash2, Loader2 } from "lucide-react";
+import { Users, DollarSign, TrendingUp, Dumbbell, LayoutDashboard, Plus, Pencil, Trash2, Loader2, Shield, Mail, Edit3, Trash, Activity, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,6 +10,38 @@ import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+
+const API = process.env.NEXT_PUBLIC_API_URL || "";
+
+// Interface definitions
+interface DashboardStats {
+    totalUsers: number;
+    activeSubscriptions: number;
+    adminUsers: number;
+    trainerUsers: number;
+    monthlyRevenue: string;
+    growth: string;
+}
+
+interface User {
+    _id: string;
+    email: string;
+    fullName: string;
+    role: "admin" | "trainer" | "user";
+    subscription?: {
+        plan: string;
+        status: string;
+        startDate: string;
+        endDate: string;
+    };
+    createdAt: string;
+}
+
+interface SubscriptionSummary {
+    basic: number;
+    pro: number;
+    elite: number;
+}
 
 interface Exercise {
     _id: string;

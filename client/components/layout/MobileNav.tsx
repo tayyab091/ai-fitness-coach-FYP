@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Dumbbell, Apple, Users, Settings, LogOut, Crown } from "lucide-react";
+import { Home, Dumbbell, Apple, Users, Settings, LogOut, Crown, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 
+// FYP - Plans Navigation Added
 const mainNavItems = [
     { icon: Home, label: "Home", path: "/" },
     { icon: Dumbbell, label: "Coaching", path: "/coaching" },
     { icon: Apple, label: "Nutrition", path: "/nutrition" },
     { icon: Users, label: "Community", path: "/community" },
+    { icon: Zap, label: "Plans", path: "/subscription" },
     { icon: Settings, label: "Settings", path: "/settings" },
 ];
 

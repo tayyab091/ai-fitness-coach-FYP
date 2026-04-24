@@ -2,16 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Dumbbell, Soup, Settings, HelpCircle, Crown, LogOut } from "lucide-react";
+import { Home, Dumbbell, Soup, Settings, HelpCircle, Crown, LogOut, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 import { useAuth } from "@/hooks/useAuth";
 import { motion } from "framer-motion";
 
+// FYP - Plans Navigation Added
 const mainNavItems = [
     { icon: Home, label: "Home", path: "/" },
     { icon: Dumbbell, label: "Coaching", path: "/coaching" },
     { icon: Soup, label: "Nutrition", path: "/nutrition" },
+    { icon: Zap, label: "Plans", path: "/subscription" },
 ];
 
 const settingsNavItems = [

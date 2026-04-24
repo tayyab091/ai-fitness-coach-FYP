@@ -2,6 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 
 export type AppRole = "admin" | "trainer" | "user";
+export type SubscriptionPlan = "basic" | "pro" | "elite" | null;
 
 export interface IUser extends Document {
     email: string;
@@ -9,7 +10,18 @@ export interface IUser extends Document {
     fullName: string;
     role: AppRole;
     avatarUrl?: string;
+    // FYP - Database Enhancement: Added for Admin & Subscription tracking
+    subscription?: {
+        plan: SubscriptionPlan;
+        status: "active" | "inactive" | "cancelled";
+        startDate?: Date;
+        endDate?: Date;
+        paymentId?: string;
+    };
+    lastLogin?: Date;
+    isActive: boolean;
     createdAt: Date;
+    updatedAt: Date;
     comparePassword(candidate: string): Promise<boolean>;
 }
 
@@ -40,6 +52,40 @@ const UserSchema = new Schema<IUser>(
         avatarUrl: {
             type: String,
             default: null,
+        },
+        // FYP - Database Enhancement: Subscription tracking for payment module
+        subscription: {
+            plan: {
+                type: String,
+                enum: ["basic", "pro", "elite", null],
+                default: null,
+            },
+            status: {
+                type: String,
+                enum: ["active", "inactive", "cancelled"],
+                default: "inactive",
+            },
+            startDate: {
+                type: Date,
+                default: null,
+            },
+            endDate: {
+                type: Date,
+                default: null,
+            },
+            paymentId: {
+                type: String,
+                default: null,
+            },
+        },
+        // FYP - Database Enhancement: Admin tracking fields
+        lastLogin: {
+            type: Date,
+            default: null,
+        },
+        isActive: {
+            type: Boolean,
+            default: true,
         },
     },
     { timestamps: true }

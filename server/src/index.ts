@@ -8,6 +8,8 @@ import authRoutes from "./routes/auth";
 import trainerRoutes from "./routes/trainers";
 import recipeRoutes from "./routes/recipes";
 import exerciseRoutes from "./routes/exercises";
+import paymentRoutes from "./routes/payments";
+import adminRoutes from "./routes/admin";
 
 dotenv.config();
 
@@ -31,6 +33,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/trainers", trainerRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/exercises", exerciseRoutes);
+app.use("/api/payments", paymentRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check
 app.get("/api/health", (_req, res) => {

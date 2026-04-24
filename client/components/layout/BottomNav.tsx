@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Dumbbell, UtensilsCrossed, Settings } from "lucide-react";
+import { Home, Dumbbell, UtensilsCrossed, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// FYP - Plans Navigation Added to mobile bottom tab bar
 const navItems = [
     { icon: Home, label: "Home", path: "/" },
     { icon: Dumbbell, label: "Coaching", path: "/coaching" },
     { icon: UtensilsCrossed, label: "Nutrition", path: "/nutrition" },
-    { icon: Settings, label: "Settings", path: "/settings" },
+    { icon: Zap, label: "Plans", path: "/subscription" },
 ];
 
 export function BottomNav() {

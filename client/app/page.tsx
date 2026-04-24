@@ -44,6 +44,7 @@ export default function HomePage() {
   const router = useRouter();
   const { user } = useAuth();
 
+  // FYP - Plans Navigation: Premium button in quick actions routes to subscription page
   const quickActions = [
     { icon: Dumbbell, label: "Workouts", path: "/coaching", color: "bg-purple-100 text-purple-600" },
     { icon: UtensilsCrossed, label: "Nutrition", path: "/nutrition", color: "bg-green-100 text-green-600" },
@@ -59,7 +60,7 @@ export default function HomePage() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants} className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-2xl p-6 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <motion.div variants={itemVariants} className="bg-linear-to-r from-primary to-primary/80 text-primary-foreground rounded-2xl p-6 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="relative z-10">
             <motion.h1 
               className="text-2xl font-bold"

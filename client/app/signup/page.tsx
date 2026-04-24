@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Logo } from "@/components/Logo";
 import { Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function SignupPage() {
     const [fullName, setFullName] = useState("");
@@ -30,40 +31,101 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-primary/10 via-background to-background p-4">
-            <div className="mb-8"><Logo /></div>
-            <Card className="w-full max-w-md">
-                <CardHeader className="text-center">
-                    <CardTitle className="text-2xl">Create Account</CardTitle>
-                    <CardDescription>Join T.E.S.T. and start your fitness journey</CardDescription>
-                </CardHeader>
-                <form onSubmit={handleSubmit}>
-                    <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="fullName">Full Name</Label>
-                            <Input id="fullName" type="text" placeholder="John Doe" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} />
-                        </div>
-                    </CardContent>
-                    <CardFooter className="flex flex-col gap-4">
-                        <Button type="submit" className="w-full" disabled={isLoading}>
-                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                            Create Account
-                        </Button>
-                        <p className="text-center text-sm text-muted-foreground">
-                            Already have an account?{" "}
-                            <Link href="/login" className="text-primary hover:underline">Sign in</Link>
-                        </p>
-                    </CardFooter>
-                </form>
-            </Card>
+        <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-primary/5 via-background to-background p-4">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-full max-w-md"
+            >
+                <div className="mb-12 text-center">
+                    <div className="mb-6">
+                        <Logo />
+                    </div>
+                    <h1 className="text-3xl font-bold tracking-tight">Create Account</h1>
+                    <p className="mt-2 text-muted-foreground">Join T.E.S.T. and start your fitness journey</p>
+                </div>
+
+                <Card className="border border-border/50">
+                    <CardHeader className="space-y-2">
+                        <CardTitle>Sign Up</CardTitle>
+                        <CardDescription>Create a new account to get started</CardDescription>
+                    </CardHeader>
+
+                    <form onSubmit={handleSubmit}>
+                        <CardContent className="space-y-5">
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.1 }}
+                                className="space-y-2"
+                            >
+                                <Label htmlFor="fullName">Full Name</Label>
+                                <Input
+                                    id="fullName"
+                                    type="text"
+                                    placeholder="John Doe"
+                                    value={fullName}
+                                    onChange={(e) => setFullName(e.target.value)}
+                                    required
+                                />
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="space-y-2"
+                            >
+                                <Label htmlFor="email">Email</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    placeholder="you@example.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.3 }}
+                                className="space-y-2"
+                            >
+                                <Label htmlFor="password">Password</Label>
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    placeholder="••••••••"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    minLength={6}
+                                />
+                                <p className="text-xs text-muted-foreground">Minimum 6 characters</p>
+                            </motion.div>
+                        </CardContent>
+
+                        <CardFooter className="flex flex-col gap-5">
+                            <Button type="submit" className="w-full" disabled={isLoading}>
+                                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Create Account
+                            </Button>
+
+                            <div className="text-center text-sm">
+                                <p className="text-muted-foreground">
+                                    Already have an account?{" "}
+                                    <Link href="/login" className="text-primary hover:underline font-semibold">
+                                        Sign in
+                                    </Link>
+                                </p>
+                            </div>
+                        </CardFooter>
+                    </form>
+                </Card>
+            </motion.div>
         </div>
     );
 }
